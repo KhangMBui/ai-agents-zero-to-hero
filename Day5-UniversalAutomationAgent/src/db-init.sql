@@ -1,0 +1,11 @@
+CREATE EXTENSION IF NOT EXISTS vector;
+
+CREATE TABLE IF NOT EXISTS memory (
+  id SERIAL PRIMARY KEY,
+  text TEXT NOT NULL,
+  embedding VECTOR(1536) NOT NULL,
+  metadata JSONB,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+ALTER TABLE memory ALTER COLUMN embedding TYPE vector;
