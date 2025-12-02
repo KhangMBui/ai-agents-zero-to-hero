@@ -12,5 +12,19 @@
     "action": "Used read_pdf_summary to generate a short TL;DR. Used send_email to send this summary to the provided email address. Used schedule_event to set an event titled 'Review Agentic AI summary' for tomorrow at 9:00 AM for 30 minutes.",
     "outcome": "PDF summary (placeholder summary) was emailed to khangbui2002@gmail.com (DEV action), and a 30-minute calendar event for reviewing the summary was scheduled for tomorrow at 9:00 AM (DEV action).",
     "createdAt": "2025-11-20T09:51:42.448Z"
+  },
+  {
+    "userRequest": "Summarize the PDF \"paper.pdf\", email me a short TL;DR at khangbui2002@gmail.com, and schedule a 30-minute calendar event tomorrow at 9:00 AM titled \"Review Agentic AI summary\".",
+    "plan": "1) Read and summarize 'paper.pdf'. 2) Email the TL;DR summary to the provided email. 3) Schedule a 30-minute calendar event tomorrow at 9:00 AM for review.",
+    "action": "Used read_pdf_summary to get content. Used send_email to send a TL;DR summary to khangbui2002@gmail.com. Used schedule_event to create a 30-minute calendar event for 'Review Agentic AI summary' at 9:00 AM tomorrow.",
+    "outcome": "The PDF was summarized, a TL;DR email draft was logged for delivery, and a calendar event at the specified time was scheduled (all in dev mode).",
+    "createdAt": "2025-11-20T09:58:28.541Z"
+  },
+  {
+    "userRequest": "Summarize the PDF \"paper.pdf\", email me a short TL;DR at khangbui2002@gmail.com.",
+    "plan": "1. Read and summarize 'paper.pdf'. 2. Email a short TL;DR to the specified email address.",
+    "action": "Used read_pdf_summary to extract main points from the PDF. Attempted to send a TL;DR via send_email, but encountered an application-specific password error.",
+    "outcome": "PDF was summarized, but the email could not be sent due to a dev-mode email authentication error. Ready to provide the TL;DR here or explore alternative delivery options.",
+    "createdAt": "2025-11-20T10:28:53.008Z"
   }
 ]

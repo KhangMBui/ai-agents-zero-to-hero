@@ -10,5 +10,11 @@
     "subject": "TL;DR of paper.pdf",
     "body": "Here is a short TL;DR of the paper:\n\n(placeholder summary).",
     "sentAt": "2025-11-20T09:51:39.189Z"
+  },
+  {
+    "to": "khangbui2002@gmail.com",
+    "subject": "TL;DR: Agentic AI Paper Summary",
+    "body": "TL;DR: Agentic AI is the next evolution in AI, enabling systems to autonomously plan, reason, use tools, and pursue long-term goals. Unlike passive models, agentic AI can break down tasks, call external tools, and revise plans using reasoning loops and memory. It unlocks advanced use cases in automation, research, and software engineering—but faces challenges in reliability, long-horizon tasks, and safety. Future directions include multi-agent collaboration, persistent learning, and seamless system integration.",
+    "sentAt": "2025-11-20T09:58:24.185Z"
   }
 ]
