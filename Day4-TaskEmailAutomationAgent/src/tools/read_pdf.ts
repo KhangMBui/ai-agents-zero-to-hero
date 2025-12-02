@@ -15,11 +15,12 @@ export const readPdfSummary = tool({
       return `File not found: ${filename}`;
     }
 
-    // const parser = new PDFParse({ url: fullPath });
-
+    const parser = new PDFParse({ url: fullPath });
+    const result = await parser.getText();
+    return result.text;
     // For now, dev-mode: just return a placeholder
     // Later: use a read PDF parser + query
-    const fakeSummary = `TL;DR for ${filename}: (placeholder summary).`;
-    return fakeSummary;
+    // const fakeSummary = `TL;DR for ${filename}: (placeholder summary).`;
+    // return fakeSummary;
   },
 });

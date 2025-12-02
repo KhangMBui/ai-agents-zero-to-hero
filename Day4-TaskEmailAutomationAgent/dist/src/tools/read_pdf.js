@@ -37,6 +37,7 @@ exports.readPdfSummary = void 0;
 const agents_1 = require("@openai/agents");
 const zod_1 = require("zod");
 const fs = __importStar(require("fs"));
+const pdf_parse_1 = require("pdf-parse");
 exports.readPdfSummary = (0, agents_1.tool)({
     name: "read_pdf_summary",
     description: "Read and summarize a PDF file located in ./docs directory.",
@@ -48,9 +49,12 @@ exports.readPdfSummary = (0, agents_1.tool)({
         if (!fs.existsSync(fullPath)) {
             return `File not found: ${filename}`;
         }
+        const parser = new pdf_parse_1.PDFParse({ url: fullPath });
+        const result = await parser.getText();
+        return result.text;
         // For now, dev-mode: just return a placeholder
         // Later: use a read PDF parser + query
-        const fakeSummary = `TL;DR for ${filename}: (placeholder summary).`;
-        return fakeSummary;
+        // const fakeSummary = `TL;DR for ${filename}: (placeholder summary).`;
+        // return fakeSummary;
     },
 });

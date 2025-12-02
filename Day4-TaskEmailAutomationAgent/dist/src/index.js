@@ -9,7 +9,7 @@ if (!process.env.OPENAI_API_KEY) {
     process.exit(1);
 }
 async function main() {
-    const userRequest = 'Summarize the PDF "paper.pdf", email me a short TL;DR at khangbui2002@gmail.com, and schedule a 30-minute calendar event tomorrow at 9:00 AM titled "Review Agentic AI summary".';
+    const userRequest = 'Summarize the PDF "paper.pdf", email me a short TL;DR at khangbui2002@gmail.com.';
     const response = await (0, agents_1.run)(agent_1.TaskAgent, userRequest, {
         maxTurns: 20,
     });

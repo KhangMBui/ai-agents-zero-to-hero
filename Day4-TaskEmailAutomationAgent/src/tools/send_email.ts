@@ -1,6 +1,7 @@
 import { tool } from "@openai/agents";
 import { z } from "zod";
 import * as fs from "fs";
+import nodemailer from "nodemailer";
 
 export const sendEmail = tool({
   name: "send_email",
@@ -12,24 +13,42 @@ export const sendEmail = tool({
   }),
   async execute({ to, subject, body }) {
     // Dev-mode: just log a file instead of actually sending
-    const logEntry = {
+    // const logEntry = {
+    //   to,
+    //   subject,
+    //   body,
+    //   sentAt: new Date().toISOString(),
+    // };
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    const info = await transporter.sendMail({
+      from: process.env.EMAIL_USER,
       to,
       subject,
-      body,
-      sentAt: new Date().toISOString(),
-    };
+      text: body,
+    });
 
-    const path = `${process.cwd()}/email-log.json`;
-    let log: any[] = [];
+    console.log("📧 Email sent:", info.messageId);
+    return `Email sent to ${to}`;
 
-    if (fs.existsSync(path)) {
-      log = JSON.parse(fs.readFileSync(path, "utf8"));
-    }
+    // const path = `${process.cwd()}/email-log.json`;
+    // let log: any[] = [];
 
-    log.push(logEntry);
-    fs.writeFileSync(path, JSON.stringify(log, null, 2));
+    // if (fs.existsSync(path)) {
+    //   log = JSON.parse(fs.readFileSync(path, "utf8"));
+    // }
 
-    console.log("📧 (DEV) Email logged:", logEntry);
-    return `Email (DEV) logged for ${to} with subject "${subject}".`;
+    // log.push(logEntry);
+    // fs.writeFileSync(path, JSON.stringify(log, null, 2));
+
+    // console.log("📧 (DEV) Email logged:", logEntry);
+    // return `Email (DEV) logged for ${to} with subject "${subject}".`;
   },
 });

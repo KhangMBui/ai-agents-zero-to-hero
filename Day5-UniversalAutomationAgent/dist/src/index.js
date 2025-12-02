@@ -10,8 +10,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 async function main() {
     const prompt = `
-I am debugging a TypeScript error: "Cannot read properties of undefined".
-What should I check?
+What things have I asked you before?
   `;
     console.log("🧠 Agent starting...\n");
     const res = await (0, agents_1.run)(agent_1.MemoryAgent, prompt, {

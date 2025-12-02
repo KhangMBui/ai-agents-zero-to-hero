@@ -32,10 +32,14 @@ exports.dbWrite = (0, agents_1.tool)({
         // Convert JS array → pgvector literal
         const pgVector = `[${embedding.join(",")}]`;
         try {
-            const res = await db_1.pool.query(`INSERT INTO memory (text, embedding, metadata)
-         VALUES ($1, $2::vector, $3)`, [text, pgVector, metadata || {}]);
-            console.log("🔥 INSERT SUCCESS — new row id:", res.rows[0].id);
-            return "Memory stored.";
+            const insert = await db_1.pool.query(`INSERT INTO memory (text, embedding, metadata)
+         VALUES ($1, $2::vector, $3)
+         RETURNING id`, [text, pgVector, metadata || {}]);
+            console.log("🟢 DB WRITE SUCCESS - inserted ID:", insert.rows[0].id);
+            return {
+                status: "ok",
+                id: insert.rows[0].id,
+            };
         }
         catch (err) {
             console.error("❌ DB WRITE ERROR:", err);
